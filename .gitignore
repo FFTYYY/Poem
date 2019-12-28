@@ -1,6 +1,6 @@
 *.pyc
 data/TangShi.txt
 data/small_tangshi.txt
-data/Verna_Tangshi.txt
+#data/Verna_Tangshi.txt
 data/baidu_ids.py
 sftp-config.json
