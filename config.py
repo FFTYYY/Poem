@@ -22,9 +22,9 @@ _par.add_argument("--model" 		, type = str  	, default = "transformer" , choices
 _par.add_argument("--d_model"		, type = int 	, default = 512)
 _par.add_argument("--dropout"		, type = float 	, default = 0.0)
 
-_par.add_argument("--num_layers"	, type = int 	, default = 6)
+_par.add_argument("--num_layers"	, type = int 	, default = 4)
 _par.add_argument("--h"				, type = int 	, default = 8)
-_par.add_argument("--d_hid"			, type = int 	, default = 1024)
+_par.add_argument("--d_hid"			, type = int 	, default = 2048)
 
 #----- training procedure -----
 _par.add_argument("--batch_size"	, type = int 	, default = 128)
@@ -46,9 +46,8 @@ C = _par.parse_args()
 
 if not C.name:
 	C.name = autoname()
-	os.makedirs("./model_save" , exist_ok = True)
+os.makedirs("./model_save" , exist_ok = True)
 C.model_save = "./model_save/model_%s" % C.name
-
 
 now_time = time.localtime(time.time())
 C.time = "%d-%d-%d %d:%d" % ( 
