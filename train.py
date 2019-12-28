@@ -137,6 +137,7 @@ if __name__ == "__main__":
 
 	#----- save model -----
 	logger.log("model saved.")
+	logger.log("my name is %s." % C.name)
 
 	#----- finish -----
 
