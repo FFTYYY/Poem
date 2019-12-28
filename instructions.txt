@@ -1,0 +1,5 @@
+#train:
+python train.py --gpus=0,1,2,3
+
+#generate:
+python generate.py --gpu=4 --name=<name>
