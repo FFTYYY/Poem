@@ -15,7 +15,7 @@ class Model(nn.Module):
 
 		#self.b_embedding = BertEmbedding(vocab, model_dir_or_name='cn-wwm', requires_grad = False, layers='4,-2,-1')
 		#self.b_emb_outer = nn.Linear(self.b_embedding.embed_size , d_model)
-		self.s_embedding = StaticEmbedding(vocab , "cn-sgns-literature-word" , requires_grad = False)
+		self.s_embedding = StaticEmbedding(vocab , "cn-sgns-literature-word" , requires_grad = True)
 		self.s_emb_outer = nn.Linear(self.s_embedding.embed_size , d_model)
 		#self.r_embedding = nn.Embedding(len(vocab) , d_model , padding_idx = vocab.to_index("<pad>"))
 		#self.r_emb_outer = nn.Linear(d_model , d_model)
