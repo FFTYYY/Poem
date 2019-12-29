@@ -1,5 +1,7 @@
 Poem：从白话文生成古诗。
 
+作者：杨永祎。我的邮箱：yongyiyang17@fudan.edu.cn
+
 ## 训练和生成
 1. 训练：`python train.py --gpus=0,1,2,3 --name=<name>`
 2. 生成：`python generate.py --name=<name>`
