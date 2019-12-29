@@ -22,13 +22,18 @@ def manually_modify(pre_tok , prob , vocab):
 		prob[x] *= 0.1
 	return prob
 
+def endswith_ng(s):
+	return s.endswith("ing") or s.endswith("ong") or s.endswith("eng")
+def endswith_n(s):
+	return s.endswith("in") or s.endswith("un") or s.endswith("en")
+
 def manually_select(pre_tok , candidate , vocab):
 
 	pre_tok = pre_tok[1:] #去掉<SOS>
 	#----- 找到首个句号 '。' -----
 	pos = -1
 	for i in range(len(pre_tok)):
-		if vocab.to_word(pre_tok[i]) in ['！' , '。']:
+		if vocab.to_word(pre_tok[i]) in ["！" , "。"]:
 			pos = i
 			break
 	if pos <= 0: #没找到句号
@@ -44,10 +49,10 @@ def manually_select(pre_tok , candidate , vocab):
 	for x in candidate:
 		x_vowol = pypinyin.pinyin(vocab.to_word(x) , style = pypinyin.STYLE_FINALS)[0][0]
 		if x_vowol == vowol or (
-			x_vowol.endswith('an') and vowol.endswith('an')) or (
-			x_vowol.endswith('ng') and vowol.endswith('ng')) or (
-			x_vowol.endswith('ao') and vowol.endswith('ao')) or (
-			x_vowol.endswith('n') and vowol.endswith('n')):
+			endswith_ng(x_vowol) 	and endswith_ng(vowol)) 	or (
+			endswith_n(x_vowol) 	and endswith_n(vowol)) 		or (
+			x_vowol.endswith("ao") 	and vowol.endswith("ao")) 	or (
+			x_vowol.endswith("an") 	and vowol.endswith("an"))	:
 			ret.append(x)
 	return ret
 
