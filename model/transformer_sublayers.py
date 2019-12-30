@@ -54,10 +54,10 @@ class MultiHeadAttention(nn.Module):
 		self.reset_params()
 
 	def reset_params(self):
-		nn.init.xavier_normal_(self.WQ.weight.data , gain = 1.0)
-		nn.init.xavier_normal_(self.WK.weight.data , gain = 1.0)
-		nn.init.xavier_normal_(self.WV.weight.data , gain = 1.0)
-		nn.init.xavier_normal_(self.WO.weight.data , gain = 1.0)
+		#nn.init.xavier_normal_(self.WQ.weight.data , gain = 1.0)
+		#nn.init.xavier_normal_(self.WK.weight.data , gain = 1.0)
+		#nn.init.xavier_normal_(self.WV.weight.data , gain = 1.0)
+		#nn.init.xavier_normal_(self.WO.weight.data , gain = 1.0)
 		pass
 
 	def forward(self , Q , K , V , q_mas , k_mas = None , att_mas = None):
@@ -103,10 +103,11 @@ class FFN(nn.Module):
 		self.reset_params()
 
 	def reset_params(self):
-		nn.init.xavier_normal_(self.L1.weight.data)
-		nn.init.xavier_normal_(self.L2.weight.data)
-		self.L1.bias.data.fill_(0)
-		self.L2.bias.data.fill_(0)
+		#nn.init.xavier_normal_(self.L1.weight.data)
+		#nn.init.xavier_normal_(self.L2.weight.data)
+		#self.L1.bias.data.fill_(0)
+		#self.L2.bias.data.fill_(0)
+		pass
 
 	def forward(self , x , mas):
 		x = self.drop(F.relu(self.L1(x)))
@@ -135,9 +136,6 @@ class Decoder_Layer(nn.Module):
 
 	def reset_params(self):
 		self.self_att.reset_params()
-		for x in self.exter_layer:
-			if hasattr(x , "reset_params"):
-				x.reset_params()
 		self.ffn.reset_params()
 
 	def forward(self, x , seq_mas , att_mas = None , select_seqs = None):
@@ -187,6 +185,8 @@ class Decoder(nn.Module):
 			for _ in range(num_layers)
 		])
 
+		self.reset_params()
+
 		#-----hyper params-----
 		self.d_model = d_model
 		self.num_layers = num_layers
@@ -194,7 +194,7 @@ class Decoder(nn.Module):
 	def reset_params(self):
 		for x in self.dec_layers:
 			x.reset_params()
-		nn.init.normal_( self.pos_emb.weight.data , 0 , 0.01)
+		nn.init.normal_( self.pos_emb.data , 0 , 0.01)
 
 	def forward(self , x , seq_mas , att_mas = None , select_seqs = None):
 		'''
@@ -227,6 +227,8 @@ class Encoder(nn.Module):
 			for _ in range(num_layers)
 		])
 
+		self.reset_params()
+
 		#-----hyper params-----
 		self.d_model = d_model
 		self.num_layers = num_layers
@@ -234,7 +236,8 @@ class Encoder(nn.Module):
 	def reset_params(self):
 		for x in self.dec_layers:
 			x.reset_params()
-		nn.init.normal_( self.pos_emb.weight.data , 0 , 0.01)
+		nn.init.normal_( self.pos_emb.data , 0 , 0.01)
+		#print ("parameters reset")
 
 	def forward(self , x , seq_mas , att_mas = None):
 		'''

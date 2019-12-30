@@ -20,6 +20,10 @@ class Model(nn.Module):
 		#self.r_embedding = nn.Embedding(len(vocab) , d_model , padding_idx = vocab.to_index("<pad>"))
 		#self.r_emb_outer = nn.Linear(d_model , d_model)
 
+		self.x_embedding = self.s_embedding
+		self.x_emb_outer = self.s_emb_outer
+		self.y_embedding = self.s_embedding
+		self.y_emb_outer = self.s_emb_outer
 
 		self.encoder 	= Encoder(
 			num_layers = num_layers , d_model = d_model , d_hid = d_hid , h = h , drop_p = dropout
@@ -57,8 +61,8 @@ class Model(nn.Module):
 		x_mask = (x != 0)
 		y_mask = (y != 0)
 
-		x = F.relu(self.s_emb_outer(self.s_embedding(x)))
-		y = F.relu(self.s_emb_outer(self.s_embedding(y)))
+		x = F.relu(self.x_emb_outer(self.x_embedding(x)))
+		y = F.relu(self.y_emb_outer(self.y_embedding(y)))
 
 		x = self.encoder(x , seq_mas = x_mask) 
 		x = F.relu(self.x_outer(x)) # (bsz , x_len , d_model)
