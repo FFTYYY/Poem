@@ -1,1 +1,39 @@
-hello!
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+</head>
+
+<body>
+	<div>
+		<textarea class="input_box" type="text"></textarea>
+		<input type="submit" value="提交" onclick="onInput()">
+
+		<p class="output_box"></p>
+	</div>
+
+	<iframe class="frame_box" src=""></iframe>
+
+</body>
+
+
+<script>
+function onInput(){
+	var input_box = document.querySelectorAll('.input_box')[0]
+	var output_box = document.querySelectorAll('.output_box')[0]
+	var inp = input_box.value
+
+	inp = inp.replace(/ /g , "")
+	inp = inp.replace(/\n/g , "")
+
+	var frame = document.querySelectorAll('.frame_box')[0]
+
+	frame.src = "http://138.197.235.8/Pages/poem/" + inp
+	
+	output_box.innerHTML = inp
+}
+</script>
+
+
+</html>
