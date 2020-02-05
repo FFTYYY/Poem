@@ -32,12 +32,17 @@ def generate_from_sents(model , sent , return_index = False):
 
 
 if __name__ == "__main__":
-	while True:
 
-		sent = input(">>")
-		if sent == "q":
-			break
-		#sent = """晚霞，山川，云"""
-		print ()
-		print (generate_from_sents(model , sent))
-		print ()
+	if C.gene_input:
+		print (generate_from_sents(model , C.gene_input))
+	else:
+
+		while True:
+
+			sent = input(">>")
+			if sent == "q":
+				break
+			#sent = """晚霞，山川，云"""
+			print ()
+			print (generate_from_sents(model , sent))
+			print ()

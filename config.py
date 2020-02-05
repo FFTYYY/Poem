@@ -40,6 +40,9 @@ _par.add_argument("--data_save" 	, type = str 	, default = "data.pkl")
 _par.add_argument("--gpus" 			, type = str 	, default = "0")
 _par.add_argument("--name"   		, type = str 	, default = "")
 
+_par.add_argument("--gene_input" 	, type = str 	, default = "")
+
+
 #---------------------------------------------------------------------------------------------------
 
 C = _par.parse_args()
