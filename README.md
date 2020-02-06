@@ -1,10 +1,17 @@
-Poem：从白话文生成古诗。
+鹦鹉赋：从白话文自动生成古诗。
+
+[展示](https://fftyyy.github.io/Poem)
+
+## 简介
+使用弱监督训练的白话生成古诗系统。
+
+更详细的介绍可以看report.pdf（摸了\_(:з」∠)\_
 
 ## 训练和生成
 1. 训练：`python train.py --gpus=0,1,2,3 --name=<name>`
 2. 生成：`python generate.py --name=<name>`
 
-我是在4块gpu上训练的，如果gpu不够或者显存太小可以适当把batch_size改小（通过`--batch_size`指令），不过这么干有可能无法复现结果。
+我是在4块至少10G显存的gpu上训练的，如果gpu不够或者显存太小可以适当把batch_size改小（通过`--batch_size`指令），不过这么干有可能无法复现结果。
 
 ## 数据集复用
 1. 本文使用的数据集Verna_Tangshi文件保存在data/Verna_Tangshi.txt
