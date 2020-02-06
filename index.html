@@ -4,17 +4,120 @@
 <head>
 	<meta charset="UTF-8">
 
+	<style type="text/css" media="screen">
+		body {
+			background-color: #2B2B2BFF;
+		}
+
+
+		.title {
+			position: fixed;
+			left: 0%;
+			top: 0%;
+			width: 100%;
+			height: 8%;
+			border: 0;
+			margin: 0;
+			color : #FFFFFFFF;
+		}
+		.title_hr {
+			position: absolute;
+			left: 0%;
+			top: 99%;
+			width: 80%;
+			height: 2px;
+			border: 0;
+			margin: 0;
+			color : #FFFFFFFF;
+			background-color : #919191FF;
+		}
+		.title_text {
+			position: absolute;
+			left: 2%;
+			top: 15%;
+			width: 100%;
+			height: 90%;
+			font-size: 25px;
+			border: 0;
+			margin: 0;
+			color : #B5B5B5FF;
+			font-family: "kaiti";
+		}
+
+		.input_box {
+			position: fixed;
+			left: 20%;
+			top: 25%;
+			width: 60%;
+			height: 20%;
+			border: 0;
+			margin: 0;
+			color : #FFFFFFFF;
+			background-color : #777777FF;
+		}
+		.input_button {
+			position: fixed;
+			left: 85%;
+			top: 32%;
+			width: 5%;
+			height: 5%;
+			border: 0;
+			background-color : #A8A8A8FF;
+			color: #000000FF;
+		}
+		.input_button:hover
+		{
+			background-color : #545454FF;
+			color: #FFFFFFFF;
+
+		}
+		.input_button:active
+		{
+			color : #000000FF;
+			background-color : #A5A5A5FF;
+		}
+
+		.frame_box {
+			position: fixed;
+			left: 20%;
+			top: 55%;
+			width: 60%;
+			height: 30%;
+			border: 0;
+			margin: 0;
+			background-color: #33333300;
+		}
+
+		.output_box{
+			position: fixed;
+			left: 2%;
+			top: 10%;
+			width: 60%;
+			height: 5%;
+			font-size: 12px;
+			font-family: "songti";
+			border: 0;
+			margin: 0;
+			color: #FFFFFFFF;
+		}
+
+	</style>
 </head>
 
 <body>
 	<div>
-		<textarea class="input_box" type="text"></textarea>
-		<input class="input_button" type="submit" value="提交" onclick="onInput()">
+		<div class = "title">
+			<p class = "title_text">鹦鹉赋：以白话文为输入的自动古诗生成系统</p>
+			<hr class = "title_hr"/>
+		</div>
 
-		<p class="output_box"></p>
+		<textarea class = "input_box" type = "text"></textarea>
+		<input class = "input_button" type = "submit" value = "生成" onclick = "onInput()">
+
+		<p class = "output_box"></p>
 	</div>
 
-	<iframe class="frame_box" src=""></iframe>
+	<iframe class = "frame_box" src = ""></iframe>
 
 </body>
 
@@ -27,14 +130,20 @@ function onInput(){
 
 	inp = inp.replace(/ /g , "")
 	inp = inp.replace(/\n/g , "")
+	inp = inp.replace(/\t/g , "")
+
+	inp = inp.replace(/\?/g , "？")
+	inp = inp.replace(/!/g , "！")
+	inp = inp.replace(/;/g , "；")
+	inp = inp.replace(/,/g , "，")
+	inp = inp.replace(/\./g , "。")
 
 	var frame = document.querySelectorAll('.frame_box')[0]
 
 	frame.src = "https://poem.yyy.soy:443/Pages/poem/" + inp
 	
-	output_box.innerHTML = inp
+	output_box.innerHTML = "生成可能挺慢的，请多等一会儿_(:з」∠)_"
 }
 </script>
-
 
 </html>
