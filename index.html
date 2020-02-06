@@ -3,12 +3,13 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+
 </head>
 
 <body>
 	<div>
 		<textarea class="input_box" type="text"></textarea>
-		<input type="submit" value="提交" onclick="onInput()">
+		<input class="input_button" type="submit" value="提交" onclick="onInput()">
 
 		<p class="output_box"></p>
 	</div>
@@ -29,7 +30,7 @@ function onInput(){
 
 	var frame = document.querySelectorAll('.frame_box')[0]
 
-	frame.src = "http://138.197.235.8/Pages/poem/" + inp
+	frame.src = "https://poem.yyy.soy:443/Pages/poem/" + inp
 	
 	output_box.innerHTML = inp
 }
